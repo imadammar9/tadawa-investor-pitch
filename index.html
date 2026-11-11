@@ -830,10 +830,11 @@ h2{font-size:60px;line-height:1.2;text-transform:uppercase;letter-spacing:.02em}
       var r=req.call(el);
       if(r&&r.then) r.then(function(){},fsBlocked);
       /* a viewer may neither resolve nor reject: check shortly after */
-      setTimeout(function(){ if(!fsEl()&&!(r&&r.then)) fsBlocked(); },600);
+      setTimeout(function(){ if(!fsEl()) fsBlocked(); },1200); /* fs-toast-v2 */
     }catch(e){ fsBlocked(); }
   };
-  function fsState(){ var on=!!fsEl(); fsBtn.title=on?'Exit full screen':'Full screen'; fsBtn.setAttribute('aria-label',fsBtn.title); fit(); }
+  function fsState(){ var on=!!fsEl(); fsBtn.title=on?'Exit full screen':'Full screen'; fsBtn.setAttribute('aria-label',fsBtn.title); fit();
+    if(on){ var t=document.getElementById('fstoast'); if(t) t.classList.remove('show'); } }
   document.addEventListener('fullscreenchange',fsState); document.addEventListener('webkitfullscreenchange',fsState);
   addEventListener('keydown',function(e){
     if(e.target.closest&&e.target.closest('a,button')&&(e.key==='Enter'||e.key===' ')) return;
