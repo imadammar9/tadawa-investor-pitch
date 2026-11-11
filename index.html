@@ -132,6 +132,8 @@ a.vid:hover img,a.vid:focus-visible img{transform:scale(1.045)}
 .ctrl button:hover{background:rgba(255,255,255,.12)}
 .ctrl button:focus-visible{box-shadow:0 0 0 3px rgba(127,191,205,.7)}
 .ctrl .count{color:rgba(255,255,255,.85);font-size:14px;letter-spacing:.08em;padding:0 10px;min-width:62px;text-align:center;font-variant-numeric:tabular-nums}
+#fstoast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translate(-50%,8px);max-width:min(560px,calc(100vw - 32px));background:#3a3536;color:#fff;font:400 15px/1.5 var(--font);letter-spacing:.03em;padding:12px 18px;border-radius:14px;box-shadow:0 2px 6px rgba(35,31,32,.06),0 8px 24px rgba(17,94,109,.08);opacity:0;pointer-events:none;transition:opacity .32s,transform .32s;z-index:30;text-align:center}
+#fstoast.show{opacity:1;transform:translate(-50%,0)}
 .bar{position:absolute;bottom:0;inset-inline-start:0;height:5px;background:var(--brand-glow);z-index:5;transition:width .8s var(--ease-out)}
 @media (prefers-reduced-motion:reduce){.bar{transition:none}}
 </style>
@@ -809,9 +811,30 @@ h2{font-size:60px;line-height:1.2;text-transform:uppercase;letter-spacing:.02em}
   function icon(name){var s=document.createElementNS('http://www.w3.org/2000/svg','svg'); s.setAttribute('viewBox','0 0 24 24'); s.setAttribute('class','ic'); s.innerHTML=I[name]; return s;}
   fwd.appendChild(icon(RTL?'left':'right')); back.appendChild(icon(RTL?'right':'left'));
   fwd.onclick=next; back.onclick=prev;
-  document.getElementById('fs').onclick=function(){
-    var d=document; try{ if(d.fullscreenElement) d.exitFullscreen(); else d.documentElement.requestFullscreen().catch(function(){}); }catch(e){}
+  /* Full screen: standard API, then the webkit one (older Safari / iPad). Some viewers
+     (in-app browser panes, iPhone Safari) block it: say so instead of failing silently. fs-toast-v1 */
+  var fsBtn=document.getElementById('fs'), toastT;
+  function fsToast(msg){
+    var t=document.getElementById('fstoast');
+    if(!t){ t=document.createElement('div'); t.id='fstoast'; t.setAttribute('role','status'); document.body.appendChild(t); }
+    t.textContent=msg; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(function(){t.classList.remove('show')},5200);
+  }
+  function fsBlocked(){ fsToast('Full screen is blocked in this viewer. Open the link in Chrome, Edge or Safari, or press F11.'); }
+  function fsEl(){ return document.fullscreenElement||document.webkitFullscreenElement||null; }
+  fsBtn.onclick=function(){
+    var d=document, el=d.documentElement;
+    try{
+      if(fsEl()){ (d.exitFullscreen||d.webkitExitFullscreen).call(d); return; }
+      var req=el.requestFullscreen||el.webkitRequestFullscreen;
+      if(!req){ fsBlocked(); return; }
+      var r=req.call(el);
+      if(r&&r.then) r.then(function(){},fsBlocked);
+      /* a viewer may neither resolve nor reject: check shortly after */
+      setTimeout(function(){ if(!fsEl()&&!(r&&r.then)) fsBlocked(); },600);
+    }catch(e){ fsBlocked(); }
   };
+  function fsState(){ var on=!!fsEl(); fsBtn.title=on?'Exit full screen':'Full screen'; fsBtn.setAttribute('aria-label',fsBtn.title); fit(); }
+  document.addEventListener('fullscreenchange',fsState); document.addEventListener('webkitfullscreenchange',fsState);
   addEventListener('keydown',function(e){
     if(e.target.closest&&e.target.closest('a,button')&&(e.key==='Enter'||e.key===' ')) return;
     var fwdKey=RTL?'ArrowLeft':'ArrowRight', backKey=RTL?'ArrowRight':'ArrowLeft';
