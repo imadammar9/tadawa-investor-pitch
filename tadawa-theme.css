@@ -1,0 +1,32 @@
+/* Tadawa (تداوىٰ) design system for the deck template.
+   Load AFTER the template's own <style>:  <link rel="stylesheet" href="tadawa-theme.css">
+   Needs fonts/MadaniArabic-*.ttf and img/logo-color.svg, img/logo-white.svg next to index.html. */
+@font-face{font-family:"Madani Arabic";src:url("fonts/MadaniArabic-Regular.ttf") format("truetype");font-weight:300 500;font-display:swap}
+@font-face{font-family:"Madani Arabic";src:url("fonts/MadaniArabic-Bold.ttf") format("truetype");font-weight:600 900;font-display:swap}
+
+:root{
+  /* brand teal + ink, from the Tadawa brand assets */
+  --brand:#0e8098; --brand-deep:#115e6d; --brand-glow:#7fbfcd;
+  --brand-50:#eef6f8; --brand-100:#dcedf1; --brand-200:#b4dae3; --brand-300:#7fbfcd; --brand-400:#3f9eb2;
+  --ink:#231f20; --ink-card:#2e2a2b; --ink-600:#5b5658; --ink-400:#8b8789;
+  --mist-100:#f2f3f6; --mist-200:#e6e8ee; --white:#ffffff; --board:#0d0d0d;
+  --danger:#c2413a; --danger-bg:#fbe9e7; --danger-line:#f1c4bf;
+  --on-brand-muted:rgba(255,255,255,.78);
+  --gradient:linear-gradient(135deg,#0e8098 0%,#115e6d 100%);
+  /* Arabic text in Madani Arabic; numbers and Latin in Readex Pro */
+  --font:"Madani Arabic","Alexandria","Noto Sans Arabic",sans-serif;
+  --lat:"Readex Pro","Segoe UI",system-ui,sans-serif;
+}
+.num,.lat,.stat .v,.step .n,.scard .n,.vid .dur,.foot .pg,.ctrl .count{font-family:var(--lat)}
+.lat{direction:ltr;unicode-bidi:isolate}
+
+/* footer: colour logo on light slides, white logo on dark/teal slides */
+.foot img{height:54px}
+
+/* ===== The Tadawa pulse (heartbeat) =====
+   <div class="hb" data-peak=".24" data-s="1.7" data-tone="white" style="top:990px"></div>
+   top = baseline y on the 1920x1080 stage. See references/tadawa-design.md for placement rules. */
+.hb{position:absolute;left:0;right:0;height:0;pointer-events:none;z-index:0}
+.hb svg{position:absolute;left:0;overflow:visible}
+.hb path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.slide .pad,.slide .split{z-index:1}
