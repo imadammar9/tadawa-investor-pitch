@@ -263,13 +263,14 @@ h2{font-size:60px;line-height:1.2;text-transform:uppercase;letter-spacing:.02em}
 .t td.acc{color:var(--brand);font-weight:700}
 /* milestones */
 .tl{display:grid;grid-template-columns:repeat(3,1fr);margin-top:70px}
-.tm{position:relative;border-top:4px solid var(--brand);padding:44px 50px 0 0}
-.tm::before{content:"";position:absolute;left:0;top:-14px;width:24px;height:24px;border-radius:50%;background:var(--brand)}
+.tm{position:relative;border-top:4px solid transparent;padding:44px 50px 0 0}
+.tm::after{content:"";position:absolute;left:0;right:0;top:-4px;height:4px;background:var(--brand);transform-origin:left center}
+.tm::before{content:"";position:absolute;left:0;top:-14px;width:24px;height:24px;border-radius:50%;background:var(--brand);z-index:1}
 .tm .tv{font-family:var(--lat);font-weight:700;font-size:150px;line-height:1;color:var(--brand)}
 .tm .tk{font-size:24px;font-weight:700;letter-spacing:.2em;color:var(--brand-deep);margin-top:14px}
 .tm p{font-size:28px;line-height:1.65;color:var(--ink-600);margin:16px 0 0}
-.tm.a{border-color:var(--brand-glow)} .tm.a::before{background:var(--brand-glow)} .tm.a .tv{color:var(--brand-glow)}
-.tm.c{border-color:var(--brand-deep)} .tm.c::before{background:var(--brand-deep)} .tm.c .tv{color:var(--brand-deep)}
+.tm.a::after,.tm.a::before{background:var(--brand-glow)} .tm.a .tv{color:var(--brand-glow)}
+.tm.c::after,.tm.c::before{background:var(--brand-deep)} .tm.c .tv{color:var(--brand-deep)}
 /* valuation */
 .big{font-family:var(--lat);font-weight:700;font-size:76px;line-height:1.15;color:var(--brand)}
 .card .big + h3{margin-top:2px}
@@ -638,9 +639,9 @@ h2{font-size:60px;line-height:1.2;text-transform:uppercase;letter-spacing:.02em}
     <p class="eyebrow" data-a>Strategic roadmap</p>
     <h2 data-a>Execution milestones</h2>
     <div class="tl">
-      <div class="tm a" data-a><div class="tv">12</div><div class="tk">MONTHS</div><p>Enhance our digital infrastructure and lay the foundation for future AI capabilities.</p></div>
-      <div class="tm" data-a><div class="tv">24</div><div class="tk">MONTHS</div><p>Expand into Saudi Arabia and the broader GCC while scaling corporate sales and clinics.</p></div>
-      <div class="tm c" data-a><div class="tv">36</div><div class="tk">MONTHS</div><p>Firmly established as the unified healthcare operating system for the Middle East.</p></div>
+      <div class="tm a"><div class="tv">12</div><div class="tk">MONTHS</div><p>Enhance our digital infrastructure and lay the foundation for future AI capabilities.</p></div>
+      <div class="tm"><div class="tv">24</div><div class="tk">MONTHS</div><p>Expand into Saudi Arabia and the broader GCC while scaling corporate sales and clinics.</p></div>
+      <div class="tm c"><div class="tv">36</div><div class="tk">MONTHS</div><p>Firmly established as the unified healthcare operating system for the Middle East.</p></div>
     </div>
   </div>
   <div class="foot"><img src="img/logo-color.svg" alt=""><span class="pg">21</span></div>
@@ -831,6 +832,63 @@ h2{font-size:60px;line-height:1.2;text-transform:uppercase;letter-spacing:.02em}
     if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){ ((dx>0)===RTL)?next():prev(); } sx=null });
   var t; function wake(){ctrl.classList.remove('idle'); clearTimeout(t); t=setTimeout(function(){ctrl.classList.add('idle')},2800)}
   addEventListener('mousemove',wake); addEventListener('keydown',wake); addEventListener('touchstart',wake,{passive:true}); wake();
+})();
+</script>
+<script>
+/* Chart and timeline motion: bars grow from the baseline, the milestone line draws left to right.
+   Calm easing, no bounce; skipped for reduced-motion users. Marker: deck-motion-v1 */
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var E='cubic-bezier(.22,1,.36,1)';
+  [].forEach.call(document.querySelectorAll('#stage .slide'),function(sl){
+    var charts=sl.querySelectorAll('svg.chart'), hbars=sl.querySelectorAll('.pb .bb'), tms=sl.querySelectorAll('.tl .tm');
+    if(!charts.length&&!hbars.length&&!tms.length) return;
+    var run=[], timers=[], gen=0;
+    function A(el,kf,o){ o.fill='backwards'; o.easing=o.easing||E; try{ run.push(el.animate(kf,o)); }catch(e){} }
+    function count(el,delay,dur){
+      var n=+(el.dataset.n||(el.dataset.n=el.textContent)), g=gen;
+      el.textContent='0';
+      timers.push(setTimeout(function(){ var t0=null;
+        requestAnimationFrame(function step(ts){ if(g!==gen) return; if(t0===null) t0=ts;
+          var p=Math.min(1,(ts-t0)/dur), e=1-Math.pow(1-p,3); el.textContent=Math.round(n*e); if(p<1) requestAnimationFrame(step); });
+      },delay));
+      timers.push(setTimeout(function(){ if(g===gen) el.textContent=n; },delay+dur+150));
+    }
+    sl.addEventListener('slide:enter',function(){
+      [].forEach.call(charts,function(svg){
+        [].forEach.call(svg.querySelectorAll('rect'),function(r){
+          var g=Math.floor((+r.getAttribute('x')-40)/175), neg=+r.getAttribute('y')>=420;
+          r.style.transformBox='fill-box'; r.style.transformOrigin=neg?'center top':'center bottom';
+          A(r,[{transform:'scaleY(0)'},{transform:'scaleY(1)'}],{duration:800,delay:350+g*110+(neg?500:0)});
+        });
+        [].forEach.call(svg.querySelectorAll('text'),function(t){
+          if(+t.getAttribute('y')>430) return;              /* year labels stay put */
+          var g=Math.floor((+t.getAttribute('x')-40)/175);
+          A(t,[{opacity:0},{opacity:1}],{duration:320,delay:900+g*110,easing:'ease-out'});
+        });
+        [].forEach.call(svg.querySelectorAll('line[stroke-dasharray]'),function(l){
+          A(l,[{opacity:0},{opacity:1}],{duration:500,delay:1500,easing:'ease-out'});
+        });
+      });
+      [].forEach.call(hbars,function(b,i){
+        A(b,[{clipPath:'inset(0 100% 0 0 round 12px)'},{clipPath:'inset(0 0 0 0 round 12px)'}],{duration:800,delay:500+i*260});
+      });
+      [].forEach.call(tms,function(tm,i){
+        var d=300+i*520;
+        A(tm,[{opacity:0,transform:'scale(.6)'},{opacity:1,transform:'none'}],{duration:320,delay:d,pseudoElement:'::before'});
+        A(tm,[{transform:'scaleX(0)'},{transform:'scaleX(1)'}],{duration:620,delay:d+120,pseudoElement:'::after',easing:'cubic-bezier(.65,0,.35,1)'});
+        [].forEach.call(tm.children,function(c,k){
+          A(c,[{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:320,delay:d+200+k*90});
+        });
+        var tv=tm.querySelector('.tv'); if(tv) count(tv,d+200,800);
+      });
+    });
+    sl.addEventListener('slide:leave',function(){
+      gen++; run.forEach(function(a){try{a.cancel()}catch(e){}}); run=[]; timers.forEach(clearTimeout); timers=[];
+      [].forEach.call(sl.querySelectorAll('.tv[data-n]'),function(el){el.textContent=el.dataset.n});
+    });
+    /* the slide shown on load gets its slide:enter from tadawa-pulse.js, loaded next */
+  });
 })();
 </script>
 <script src="tadawa-pulse.js"></script>
