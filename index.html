@@ -5,6 +5,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>TADAWA Investor Presentation 2026</title>
+<meta name="description" content="TADAWA investor presentation 2026: the digital front door to primary healthcare in the Middle East.">
+<meta property="og:title" content="TADAWA Investor Presentation 2026">
+<meta property="og:description" content="The future of primary healthcare in the Middle East.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0e8098">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -136,6 +141,14 @@ a.vid:hover img,a.vid:focus-visible img{transform:scale(1.045)}
 #fstoast.show{opacity:1;transform:translate(-50%,0)}
 .bar{position:absolute;bottom:0;inset-inline-start:0;height:5px;background:var(--brand-glow);z-index:5;transition:width .8s var(--ease-out)}
 @media (prefers-reduced-motion:reduce){.bar{transition:none}}
+/* ux-pass-v1: rotate hint on phones, screen reader helper */
+#rotate{display:none;position:fixed;top:calc(16px + env(safe-area-inset-top,0px));left:16px;right:16px;z-index:25;align-items:center;gap:14px;background:#3a3536;color:#fff;border-radius:16px;padding:14px 16px;font:500 16px/1.4 var(--font);letter-spacing:.02em}
+#rotate i{font-size:30px;color:var(--brand-glow);flex:none}
+#rotate span{flex:1}
+#rotate button{all:unset;cursor:pointer;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;flex:none;font-size:20px}
+#rotate button:focus-visible{box-shadow:0 0 0 3px rgba(127,191,205,.7)}
+@media (orientation:portrait) and (max-width:700px){#rotate:not([hidden]){display:flex}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
 
 <link rel="stylesheet" href="tadawa-theme.css">
@@ -282,6 +295,14 @@ h2{font-size:60px;line-height:1.2;text-transform:uppercase;letter-spacing:.02em}
 .pb.a{color:var(--brand);font-weight:600}
 .vcols{border-top:1.5px solid rgba(127,191,205,.5);padding-top:22px}
 .vcols h3{font-size:32px} .vcols p{font-size:25px;line-height:1.6;color:rgba(255,255,255,.7);margin:10px 0 0}
+/* ux-contrast-v1: AA contrast for small text, placed last so it wins */
+.brand .foot .pg{color:rgba(255,255,255,.82)}
+.slide .src{color:var(--ink-600)}
+.dark .src{color:rgba(255,255,255,.72)}
+.jr.bad .jh .jn{color:#9e322c}
+.row.hero .s{color:#fff}
+.card.hero .sub,.card.hero .bl,.card.hero .l{color:#fff}
+.tm.a .tv{color:#459aae}
 </style>
 </head>
 <body>
@@ -357,9 +378,9 @@ h2{font-size:60px;line-height:1.2;text-transform:uppercase;letter-spacing:.02em}
       <div>
         <p class="col-l" data-a>Current footprint</p>
         <div class="rows">
-          <div class="row" data-a><i class="ph-fill ph-map-pin ri"></i><div><b>Amman</b><span class="s">Dedicated primary care clinic</span></div></div>
-          <div class="row" data-a><i class="ph-fill ph-map-pin ri"></i><div><b>Al Tafileh</b><span class="s">Top-tier medical center</span></div></div>
-          <div class="row" data-a><i class="ph-fill ph-map-pin ri"></i><div><b>Irbid</b><span class="s">Partner primary care clinic</span></div></div>
+          <div class="row" data-a><i class="ph-fill ph-map-pin ri" aria-hidden="true"></i><div><b>Amman</b><span class="s">Dedicated primary care clinic</span></div></div>
+          <div class="row" data-a><i class="ph-fill ph-map-pin ri" aria-hidden="true"></i><div><b>Al Tafileh</b><span class="s">Top-tier medical center</span></div></div>
+          <div class="row" data-a><i class="ph-fill ph-map-pin ri" aria-hidden="true"></i><div><b>Irbid</b><span class="s">Partner primary care clinic</span></div></div>
         </div>
       </div>
       <div>
@@ -383,9 +404,9 @@ h2{font-size:60px;line-height:1.2;text-transform:uppercase;letter-spacing:.02em}
     <h2 data-a>The inefficiency of <em>healthcare</em></h2>
     <p class="lead" data-a style="max-width:1620px">Modern healthcare was not designed around patients; it was fundamentally built around hospitals, doctors, and the insurance system. Today, millions of patients enter the healthcare system through the <b>wrong door</b>. They bypass primary care, choosing to visit specialists directly when they should initially see a family physician or a primary healthcare provider.</p>
     <div style="position:absolute;left:128px;right:128px;top:742px;display:grid;grid-template-columns:repeat(3,1fr);gap:28px">
-      <div class="row" data-a><i class="ph-fill ph-coins ri"></i><div><b>Higher costs</b><span class="s">for payers</span></div></div>
-      <div class="row" data-a><i class="ph-fill ph-puzzle-piece ri"></i><div><b>Fragmented care</b><span class="s">for patients</span></div></div>
-      <div class="row" data-a><i class="ph-fill ph-chart-line-down ri"></i><div><b>Poorer outcomes</b><span class="s">for everyone</span></div></div>
+      <div class="row" data-a><i class="ph-fill ph-coins ri" aria-hidden="true"></i><div><b>Higher costs</b><span class="s">for payers</span></div></div>
+      <div class="row" data-a><i class="ph-fill ph-puzzle-piece ri" aria-hidden="true"></i><div><b>Fragmented care</b><span class="s">for patients</span></div></div>
+      <div class="row" data-a><i class="ph-fill ph-chart-line-down ri" aria-hidden="true"></i><div><b>Poorer outcomes</b><span class="s">for everyone</span></div></div>
     </div>
   </div>
   <div class="foot"><img src="img/logo-color.svg" alt=""><span class="pg">06</span></div>
@@ -397,12 +418,12 @@ h2{font-size:60px;line-height:1.2;text-transform:uppercase;letter-spacing:.02em}
     <p class="eyebrow" data-a>The problem we solve</p>
     <h2 data-a>Two patient journeys</h2>
     <div class="jr bad" data-a style="margin-top:50px">
-      <div class="jh"><span class="jt"><i class="ph-fill ph-warning"></i>Today: the fragmented pathway</span><span class="jn">Higher costs · poor experience</span></div>
-      <div class="jf"><div class="jb">Google search</div><i class="ph-bold ph-arrow-right ja"></i><div class="jb">Specialist</div><i class="ph-bold ph-arrow-right ja"></i><div class="jb">Labs/Images</div><i class="ph-bold ph-arrow-right ja"></i><div class="jb">Hospital</div></div>
+      <div class="jh"><span class="jt"><i class="ph-fill ph-warning" aria-hidden="true"></i>Today: the fragmented pathway</span><span class="jn">Higher costs · poor experience</span></div>
+      <div class="jf"><div class="jb">Google search</div><i class="ph-bold ph-arrow-right ja" aria-hidden="true"></i><div class="jb">Specialist</div><i class="ph-bold ph-arrow-right ja" aria-hidden="true"></i><div class="jb">Labs/Images</div><i class="ph-bold ph-arrow-right ja" aria-hidden="true"></i><div class="jb">Hospital</div></div>
     </div>
     <div class="jr good" data-a style="margin-top:32px">
       <div class="jh"><span class="jt">With TADAWA: the guided journey</span><span class="jn">Lower costs · better outcomes</span></div>
-      <div class="jf"><div class="jb on"><div><b>Family doctor first</b><span class="s">Most cases resolved here</span></div><i class="ph-fill ph-check-circle" style="font-size:44px"></i></div><i class="ph-bold ph-arrow-right ja"></i><div class="jb"><b>Specialist</b><span class="s">Complex cases</span></div><i class="ph-bold ph-arrow-right ja"></i><div class="jb"><b>Hospital</b><span class="s">Only when needed</span></div></div>
+      <div class="jf"><div class="jb on"><div><b>Family doctor first</b><span class="s">Most cases resolved here</span></div><i class="ph-fill ph-check-circle" aria-hidden="true" style="font-size:44px"></i></div><i class="ph-bold ph-arrow-right ja" aria-hidden="true"></i><div class="jb"><b>Specialist</b><span class="s">Complex cases</span></div><i class="ph-bold ph-arrow-right ja" aria-hidden="true"></i><div class="jb"><b>Hospital</b><span class="s">Only when needed</span></div></div>
     </div>
   </div>
   <div class="foot"><img src="img/logo-color.svg" alt=""><span class="pg">07</span></div>
@@ -457,11 +478,11 @@ h2{font-size:60px;line-height:1.2;text-transform:uppercase;letter-spacing:.02em}
     <p class="eyebrow" data-a>Market timing</p>
     <h2 data-a>Why now? <em>The perfect timing</em></h2>
     <div class="grid3" style="margin-top:40px">
-      <div class="card" data-a><div class="icbox"><i class="ph-fill ph-chart-bar"></i></div><p class="lab">Macro trends</p><h3>Rising market pressures</h3><p><b>Healthcare costs:</b> traditional delivery models are hitting cost ceilings.</p><p><b>Insurance claims:</b> soaring claim volumes push payers toward preventative triage networks.</p></div>
-      <div class="card" data-a><div class="icbox"><i class="ph-fill ph-bank"></i></div><p class="lab">Systemic shifts</p><h3>Policy &amp; patient needs</h3><p><b>Chronic diseases:</b> a growing crisis that demands continuous digital monitoring.</p><p><b>Government digitization:</b> national mandates accelerating healthcare integration.</p></div>
-      <div class="card" data-a><div class="icbox"><i class="ph-fill ph-lightning"></i></div><p class="lab">Technology</p><h3>Digital acceleration</h3><p><b>AI acceleration:</b> intelligent triage is ready for clinical deployment.</p><p><b>Patient expectations:</b> consumers demand immediate, frictionless mobile access.</p></div>
+      <div class="card" data-a><div class="icbox"><i class="ph-fill ph-chart-bar" aria-hidden="true"></i></div><p class="lab">Macro trends</p><h3>Rising market pressures</h3><p><b>Healthcare costs:</b> traditional delivery models are hitting cost ceilings.</p><p><b>Insurance claims:</b> soaring claim volumes push payers toward preventative triage networks.</p></div>
+      <div class="card" data-a><div class="icbox"><i class="ph-fill ph-bank" aria-hidden="true"></i></div><p class="lab">Systemic shifts</p><h3>Policy &amp; patient needs</h3><p><b>Chronic diseases:</b> a growing crisis that demands continuous digital monitoring.</p><p><b>Government digitization:</b> national mandates accelerating healthcare integration.</p></div>
+      <div class="card" data-a><div class="icbox"><i class="ph-fill ph-lightning" aria-hidden="true"></i></div><p class="lab">Technology</p><h3>Digital acceleration</h3><p><b>AI acceleration:</b> intelligent triage is ready for clinical deployment.</p><p><b>Patient expectations:</b> consumers demand immediate, frictionless mobile access.</p></div>
     </div>
-    <div class="tip" data-a><i class="ph-fill ph-clock-countdown ti"></i>The convergence of these forces makes this the definitive window for TADAWA.</div>
+    <div class="tip" data-a><i class="ph-fill ph-clock-countdown ti" aria-hidden="true"></i>The convergence of these forces makes this the definitive window for TADAWA.</div>
   </div>
   <div class="foot"><img src="img/logo-color.svg" alt=""><span class="pg">11</span></div>
 </section>
@@ -472,12 +493,12 @@ h2{font-size:60px;line-height:1.2;text-transform:uppercase;letter-spacing:.02em}
     <p class="eyebrow" data-a>Business model</p>
     <h2 data-a>Lowering insurer loss ratios by <em class="lat">15-20%</em></h2>
     <div class="fl">
-      <div class="fc" data-a><i class="ph-fill ph-shield-check fi"></i>Insurance provider<i class="ph-bold ph-arrow-right fa"></i></div>
-      <div class="fc" data-a><i class="ph-fill ph-chat-circle-dots fi"></i>Digital consultation<i class="ph-bold ph-arrow-right fa"></i></div>
-      <div class="fc" data-a><i class="ph-fill ph-check-circle fi"></i>Primary care resolution<i class="ph-bold ph-arrow-right fa"></i></div>
-      <div class="fc" data-a><i class="ph-fill ph-trend-down fi"></i>Lower claim cost<i class="ph-bold ph-arrow-right fa"></i></div>
-      <div class="fc" data-a><i class="ph-fill ph-thumbs-up fi"></i>Higher satisfaction<i class="ph-bold ph-arrow-right fa"></i></div>
-      <div class="fc hero" data-a><i class="ph-fill ph-repeat fi"></i>Recurring revenue</div>
+      <div class="fc" data-a><i class="ph-fill ph-shield-check fi" aria-hidden="true"></i>Insurance provider<i class="ph-bold ph-arrow-right fa" aria-hidden="true"></i></div>
+      <div class="fc" data-a><i class="ph-fill ph-chat-circle-dots fi" aria-hidden="true"></i>Digital consultation<i class="ph-bold ph-arrow-right fa" aria-hidden="true"></i></div>
+      <div class="fc" data-a><i class="ph-fill ph-check-circle fi" aria-hidden="true"></i>Primary care resolution<i class="ph-bold ph-arrow-right fa" aria-hidden="true"></i></div>
+      <div class="fc" data-a><i class="ph-fill ph-trend-down fi" aria-hidden="true"></i>Lower claim cost<i class="ph-bold ph-arrow-right fa" aria-hidden="true"></i></div>
+      <div class="fc" data-a><i class="ph-fill ph-thumbs-up fi" aria-hidden="true"></i>Higher satisfaction<i class="ph-bold ph-arrow-right fa" aria-hidden="true"></i></div>
+      <div class="fc hero" data-a><i class="ph-fill ph-repeat fi" aria-hidden="true"></i>Recurring revenue</div>
     </div>
     <div class="two">
       <p data-a>Resolving most cases at the primary care level directly lowers claim costs for insurers, while fast, accessible care lifts patient satisfaction.</p>
@@ -514,7 +535,7 @@ h2{font-size:60px;line-height:1.2;text-transform:uppercase;letter-spacing:.02em}
           <div class="q"><span class="ql">FRAGMENTED SERVICES</span></div>
           <div class="q"><span class="d" style="left:110px;top:86px">Polyclinics</span><span class="ql">TRADITIONAL CLINICS</span></div>
         </div>
-        <div class="qx"><span><i class="ph-bold ph-arrow-up"></i>Technology capability</span><span>Clinical integration<i class="ph-bold ph-arrow-right"></i></span></div>
+        <div class="qx"><span><i class="ph-bold ph-arrow-up" aria-hidden="true"></i>Technology capability</span><span>Clinical integration<i class="ph-bold ph-arrow-right" aria-hidden="true"></i></span></div>
       </div>
       <div>
         <h3 data-a style="font-size:42px;color:var(--brand)">The upper-right leader</h3>
@@ -536,9 +557,9 @@ h2{font-size:60px;line-height:1.2;text-transform:uppercase;letter-spacing:.02em}
       <div>
         <p class="col-l" data-a>Current footprint</p>
         <div class="rows">
-          <div class="row" data-a><i class="ph-fill ph-map-pin ri"></i><div><b>Amman</b><span class="s">Dedicated primary care clinic</span></div></div>
-          <div class="row" data-a><i class="ph-fill ph-map-pin ri"></i><div><b>Al Tafileh</b><span class="s">Top-tier medical center</span></div></div>
-          <div class="row" data-a><i class="ph-fill ph-map-pin ri"></i><div><b>Irbid</b><span class="s">Partner primary care clinic</span></div></div>
+          <div class="row" data-a><i class="ph-fill ph-map-pin ri" aria-hidden="true"></i><div><b>Amman</b><span class="s">Dedicated primary care clinic</span></div></div>
+          <div class="row" data-a><i class="ph-fill ph-map-pin ri" aria-hidden="true"></i><div><b>Al Tafileh</b><span class="s">Top-tier medical center</span></div></div>
+          <div class="row" data-a><i class="ph-fill ph-map-pin ri" aria-hidden="true"></i><div><b>Irbid</b><span class="s">Partner primary care clinic</span></div></div>
         </div>
       </div>
       <div>
@@ -584,7 +605,7 @@ h2{font-size:60px;line-height:1.2;text-transform:uppercase;letter-spacing:.02em}
       </div>
       <div>
         <div class="kp" data-a><div class="kv">18.2%</div><div class="kk">Revenue CAGR, 2027-2031</div></div>
-        <div class="kp" data-a><div class="kv">30% <i class="ph-bold ph-arrow-right" style="font-size:.7em"></i> 37.9%</div><div class="kk">Gross margin expansion</div></div>
+        <div class="kp" data-a><div class="kv">30% <i class="ph-bold ph-arrow-right" aria-hidden="true" style="font-size:.7em"></i> 37.9%</div><div class="kk">Gross margin expansion</div></div>
         <div class="kp" data-a><div class="kv">2029</div><div class="kk">First year of net profit</div></div>
         <div class="kp ink" data-a><div class="kv">JOD 0.41M</div><div class="kk">2031 net profit · 11.2% margin</div></div>
       </div>
@@ -615,7 +636,7 @@ h2{font-size:60px;line-height:1.2;text-transform:uppercase;letter-spacing:.02em}
         <div class="legend"><span>Bars: valuation</span><span>Inside: share price (JOD)</span><span>Dashed: post-money JOD 4.67M</span></div>
       </div>
       <div style="display:flex;flex-direction:column;gap:20px">
-        <div class="card hero vc" data-a><div class="l">Implied share value, 2031</div><div class="kv">1.66×</div><div class="l">JOD 16.00 entry <i class="ph-bold ph-arrow-right"></i> JOD 26.59</div></div>
+        <div class="card hero vc" data-a><div class="l">Implied share value, 2031</div><div class="kv">1.66×</div><div class="l">JOD 16.00 entry <i class="ph-bold ph-arrow-right" aria-hidden="true"></i> JOD 26.59</div></div>
         <div class="card vc" data-a><div class="l">Implied annual return</div><div class="kv">~10.7%</div><div class="l">End-2026 to end-2031, before dividends</div></div>
         <div class="card vc" data-a><div class="l">This round's 29,161 shares in 2031</div><div class="kv">JOD 0.78M</div><div class="l">vs JOD 466,576 invested</div></div>
       </div>
@@ -630,7 +651,7 @@ h2{font-size:60px;line-height:1.2;text-transform:uppercase;letter-spacing:.02em}
   <div class="pad">
     <p class="eyebrow" data-a>Use of funds</p>
     <h2 data-a style="max-width:1500px">Capital deployed across five areas to scale our regional advantage</h2>
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:22px;margin-top:56px"><div class="card" data-a style="padding:30px 28px"><div class="icbox"><i class="ph-fill ph-code"></i></div><h3 style="font-size:30px">Technology development</h3><p>Digital infrastructure and future AI capabilities</p></div><div class="card" data-a style="padding:30px 28px"><div class="icbox"><i class="ph-fill ph-globe-hemisphere-east"></i></div><h3 style="font-size:30px">Regional expansion</h3><p>Entry into Saudi Arabia and the broader GCC</p></div><div class="card" data-a style="padding:30px 28px"><div class="icbox"><i class="ph-fill ph-users-three"></i></div><h3 style="font-size:30px">Sales &amp; acquisition</h3><p>Corporate clients and insurance partners</p></div><div class="card" data-a style="padding:30px 28px"><div class="icbox"><i class="ph-fill ph-gear"></i></div><h3 style="font-size:30px">Operations</h3><p>Supporting medical centers and partner clinics</p></div><div class="card" data-a style="padding:30px 28px"><div class="icbox"><i class="ph-fill ph-wallet"></i></div><h3 style="font-size:30px">Working capital</h3><p>Smooth scaling during the regional rollout</p></div></div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:22px;margin-top:56px"><div class="card" data-a style="padding:30px 28px"><div class="icbox"><i class="ph-fill ph-code" aria-hidden="true"></i></div><h3 style="font-size:30px">Technology development</h3><p>Digital infrastructure and future AI capabilities</p></div><div class="card" data-a style="padding:30px 28px"><div class="icbox"><i class="ph-fill ph-globe-hemisphere-east" aria-hidden="true"></i></div><h3 style="font-size:30px">Regional expansion</h3><p>Entry into Saudi Arabia and the broader GCC</p></div><div class="card" data-a style="padding:30px 28px"><div class="icbox"><i class="ph-fill ph-users-three" aria-hidden="true"></i></div><h3 style="font-size:30px">Sales &amp; acquisition</h3><p>Corporate clients and insurance partners</p></div><div class="card" data-a style="padding:30px 28px"><div class="icbox"><i class="ph-fill ph-gear" aria-hidden="true"></i></div><h3 style="font-size:30px">Operations</h3><p>Supporting medical centers and partner clinics</p></div><div class="card" data-a style="padding:30px 28px"><div class="icbox"><i class="ph-fill ph-wallet" aria-hidden="true"></i></div><h3 style="font-size:30px">Working capital</h3><p>Smooth scaling during the regional rollout</p></div></div>
   </div>
   <div class="foot"><img src="img/logo-white.svg" alt=""><span class="pg">20</span></div>
 </section>
@@ -716,6 +737,8 @@ h2{font-size:60px;line-height:1.2;text-transform:uppercase;letter-spacing:.02em}
 </div>
 </div>
 
+<div id="rotate" role="note"><i class="ph-fill ph-device-rotate" aria-hidden="true"></i><span>Turn your phone sideways to read the slides.</span><button type="button" id="rotateX" aria-label="Dismiss"><i class="ph-bold ph-x" aria-hidden="true"></i></button></div>
+<p class="sr-only" id="live" aria-live="polite"></p>
 <nav class="ctrl" id="ctrl" aria-label="Slide navigation">
   <button id="fs" title="Full screen" aria-label="Full screen"><i data-i="max"></i></button>
   <button id="back" aria-label="Previous slide"><i data-i="left"></i></button>
@@ -757,6 +780,13 @@ h2{font-size:60px;line-height:1.2;text-transform:uppercase;letter-spacing:.02em}
   });
 
   var stage=document.getElementById('stage'), slides=[].slice.call(stage.querySelectorAll('.slide')), N=slides.length;
+  stage.setAttribute('role','region'); stage.setAttribute('aria-roledescription','slide deck'); stage.setAttribute('aria-label',document.title);
+  slides.forEach(function(s,i){ s.setAttribute('role','group'); s.setAttribute('aria-roledescription','slide');
+    var h=s.querySelector('h1,h2'); if(h){h=h.cloneNode(true); [].forEach.call(h.querySelectorAll('br'),function(b){b.replaceWith(' ')});} s.setAttribute('aria-label',(i+1)+' of '+N+(h?': '+h.textContent.replace(/\s+/g,' ').trim():'')); });
+  var live=document.getElementById('live');
+  (function(){ var r=document.getElementById('rotate'), x=document.getElementById('rotateX');
+    try{ if(sessionStorage.getItem('rotateHint')==='off') r.hidden=true; }catch(e){}
+    x.onclick=function(e){ e.stopPropagation(); r.hidden=true; try{ sessionStorage.setItem('rotateHint','off'); }catch(err){} }; })();
   var bar=document.getElementById('bar'), count=document.getElementById('count'), ctrl=document.getElementById('ctrl');
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var cur=-1, anims=[], timers=[];
@@ -797,6 +827,7 @@ h2{font-size:60px;line-height:1.2;text-transform:uppercase;letter-spacing:.02em}
     cur=n;
     bar.style.width=((n+1)/N*100)+'%';
     count.textContent=(n+1)+' / '+N;
+    if(live) live.textContent=slides[n].getAttribute('aria-label');
     try{history.replaceState(null,'','#slide-'+(n+1))}catch(e){}
   }
   function fromHash(){var m=/slide-(\d+)/.exec(location.hash);return m?Math.max(0,Math.min(N-1,+m[1]-1)):0}
